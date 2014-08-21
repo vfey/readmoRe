@@ -30,7 +30,7 @@
   A data frame.
 }
 \author{
-  Vidal Fey \email{vidal.fey@vtt.fi}
+  Vidal Fey \email{vidal.fey@utu.fi}
 }
 \note{
   This is a helper function written in the context of the plate converter utility
