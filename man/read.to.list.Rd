@@ -27,7 +27,7 @@
   \item{skip}{
   integer, number of lines to skip from the top of the file
 }
-  \item{dots}{
+  \item{...}{
   additional arguments passed to 'read2list()'
 }
   \item{verbose}{
@@ -39,5 +39,5 @@
 }
 \author{
   Vidal Fey \email{vidal.fey@utu.fi}
-
+}
 \keyword{ utilities }

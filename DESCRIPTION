@@ -6,6 +6,7 @@ Date: 2014-08-21
 Author: Vidal Fey
 Maintainer: Vidal Fey <vidal.fey@utu.fi>
 Description: This package contains tools and helper functions to perform (usually small) manipulations of data structures such as data frames, matrices and lists, assist in gene expression data analysis and provide specific functionality to analysis scripts.
-Suggests: org.Hs.eg.db, org.Mm.eg.db
+Suggests: org.Hs.eg.db, org.Mm.eg.db, R.utils, gdata
+Imports: AnnotationDbi
 License: file LICENSE
 LazyLoad: yes

@@ -25,6 +25,7 @@
 }
 \author{
   Vidal Fey \email{vidal.fey@utu.fi}
+}
 \seealso{
   \command{\link[base]{readLines}}
 }

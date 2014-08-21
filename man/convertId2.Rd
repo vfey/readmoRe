@@ -29,7 +29,4 @@
 \note{
   The function was initially written by Henrik Edgren and later adapted by Vidal Fey.
 }
-\seealso{
-  \command{\link[affyUtil]{get.annotation2}}
-}
 \keyword{ utilities }

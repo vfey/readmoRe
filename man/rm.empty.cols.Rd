@@ -32,11 +32,4 @@
 \author{
   Vidal Fey \email{vidal.fey@utu.fi}
 }
-\note{
-  This is a helper function written in the context of the plate converter utility
-  in the \pkg{HTSutil} package. There, it is used in the function \command{read2list}.
-}
-\seealso{
-  \command{\link[HTSutil]{read2list}}
-}
 \keyword{ utilities }
