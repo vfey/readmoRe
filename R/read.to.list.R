@@ -29,7 +29,7 @@ read.to.list <-
                         ## check for existence of files if folder name is missing
                         ## (that is, if 'dat' is a (vector of) file path(s) or the working directory is presumed to contain the file(s))
                         dat <- suppressWarnings(normalizePath(dat))
-                        if (any(file.exists(dat))) fln <- dat[which(file.exits(dat))] ## generate (vector of) paths of existing files
+                        if (any(file.exists(dat))) fln <- dat[which(file.exists(dat))] ## generate (vector of) paths of existing files
                         else stop("File not found! Provide complete file path in 'dat' or use the 'folder' argument to point to the right directory.")
                 } else {
                         fln <- normalizePath(file.path(folder, dat)) ## generate file path(s)
