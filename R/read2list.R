@@ -47,7 +47,7 @@ function (dat, sheets = 1, skip = 0, ..., verbose = TRUE)
           if (verbose) cat(paste(" Reading ", length(sheets[[xl]]), " sheet(s)...\n", sep = ""))
           dl <- lapply(sheets[[xl]], function(z) {
               if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-              xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
+              xls <- rm.empty.cols(read.xls(x, sheet = z, skip=skip, ...))
               if (verbose) cat("done\n")
               if (is.null(xls[[1]])) warning("Error while reading", x,
                   "Returning", xls)
