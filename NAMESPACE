@@ -4,5 +4,8 @@ exportPattern("^[[:alpha:]]+")
 # Import all packages listed as Imports or Depends
 import(
   AnnotationDbi,
-  gdata
+  org.Hs.eg.db,
+  org.Mm.eg.db,
+  gdata,
+  Rutils
   )

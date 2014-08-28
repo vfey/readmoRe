@@ -2,7 +2,6 @@ convertId2 <-
 function (id, species = "Human")
 {
     if (species == "Human") {
-      require(org.Hs.eg.db)
       ensg2eg.env <- org.Hs.egENSEMBL2EG
       sym.env <- org.Hs.egSYMBOL
       sym2eg.env <- org.Hs.egSYMBOL2EG
@@ -10,7 +9,6 @@ function (id, species = "Human")
       ensg <- "ENSG"
     }
     if (species == "Mouse") {
-      require(org.Mm.eg.db)
       ensg2eg.env <- org.Mm.egENSEMBL2EG
       sym.env <- org.Mm.egSYMBOL
       sym2eg.env <- org.Mm.egSYMBOL2EG
