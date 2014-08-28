@@ -7,5 +7,5 @@ import(
   org.Hs.eg.db,
   org.Mm.eg.db,
   gdata,
-  Rutils
+  R.utils
   )
