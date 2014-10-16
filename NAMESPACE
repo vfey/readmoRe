@@ -5,7 +5,6 @@ exportPattern("^[[:alpha:]]+")
 import(
   AnnotationDbi,
   org.Hs.eg.db,
-  org.Mm.eg.db,
   gdata,
   R.utils
   )
