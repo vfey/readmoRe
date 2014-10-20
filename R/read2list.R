@@ -31,7 +31,7 @@ function (dat, sheets = 1, skip = 0, ..., verbose = TRUE)
           se <- which(lapply(ve, function(y) grep(y, l)) == 1)
           sep <- ve[se]
           dec <- ifelse(sep == ";", ",", ".")
-          dT <- read.table(x, header = TRUE, dec = dec,
+          dT <- read.delim(x, header = TRUE, dec = dec,
               sep = sep, comment.char = "", skip=skip, ...)
           dT <- rm.empty.cols(dT)
           dT <- list(dT)
