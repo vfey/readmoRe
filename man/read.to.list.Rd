@@ -16,7 +16,7 @@
   character, the file name
 }
   \item{type}{
-  character, file extension to be read: one of ".txt", ".tsv", ".csv", ".xls", ".xlsx", ".xdr", ".RData"
+  character, file extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData"
 }
   \item{folder}{
   character, folder where the file is found
