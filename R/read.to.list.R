@@ -6,7 +6,7 @@ read.to.list <-
         if (!is.character(dat)) stop("'dat' must be a character vector!")
         
         ## define valid file extensions
-        ext <- c(".txt", ".tsv", ".csv", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions
+        ext <- c(".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions
         
         ## look for certain file types; if set, 'dat' will be ignored and set to "all"
         if (!missing(type)) {
@@ -17,7 +17,7 @@ read.to.list <-
         
         ## read all files of the supported types in the given directory
         #### WARNING: This option should be used only if the user is certain regarding the contents of the files in that directory!
-        if (dat == "all") {
+        if (length(dat) == 1 && dat == "all") {
                 if (missing(folder)) stop("Folder name missing!")
                 fls <- dir(path = folder, full.names=TRUE, recursive=TRUE)
                 ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", basename(fls)) ## extract file extensions

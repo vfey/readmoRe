@@ -5,7 +5,7 @@ function (dat, sheets = 1, skip = 0, ..., verbose = TRUE)
   sheets <- as.list(sheets)
   if (!is.character(dat)) stop("'dat' must be a character vector")
   ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
-  val.ext <- c(".txt", ".tsv", ".csv", ".xls", ".xlsx", ".xdr", ".RData")
+  val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData")
   valid <- ext.all %in% val.ext
   if (any(!valid)) {
       if (all(!valid)) { stop("File type(s) not valid.") }
@@ -37,6 +37,17 @@ function (dat, sheets = 1, skip = 0, ..., verbose = TRUE)
           dT <- list(dT)
           if (verbose) cat("done\n")
       }
+	  if (ext == ".vcf") {
+		  if (verbose) cat(paste("Reading variant call file", x, "...", sep=""))
+		  sep <- get.sep(x, pattern="#CHROM")
+		  dec <- ifelse(sep == ";", ",", ".")
+		  if (skip == 0) skip <- get.skip(x, pattern="#CHROM")
+		  dT <- read.delim(x, header = TRUE, dec = dec,
+				  sep = sep, comment.char = "", skip=skip, ...)
+		  dT <- rm.empty.cols(dT)
+		  dT <- list(dT)
+		  if (verbose) cat("done\n")
+	  }
       if (length(grep(".xls", ext)) > 0) {
           xl <- match(fl, nx)
           if (verbose) cat(paste("Reading Excel file ", x, "...\n", sep = ""))
