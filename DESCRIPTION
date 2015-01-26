@@ -1,13 +1,13 @@
 Package: genRal
 Type: Package
 Title: Utilities for data analysis
-Version: 0.1-8
+Version: 0.1-9
 Date: 2015-01-26
 Author: Vidal Fey
 Maintainer: Vidal Fey <vidal.fey@utu.fi>
 Description: This package contains tools and helper functions to perform (usually small) manipulations of data structures such as data frames, matrices and lists, assist in gene expression data analysis and provide specific functionality to analysis scripts.
-Depends: R.utils, gdata
+Depends: R.utils
 Suggests: org.Hs.eg.db, org.Mm.eg.db
-Imports: AnnotationDbi
+Imports: AnnotationDbi, gdata
 License: file LICENSE
 LazyLoad: yes
