@@ -1,5 +1,5 @@
 read.to.list <-
-        function (dat, type, folder, sheets = 1, skip = 0, ..., verbose = TRUE)
+        function (dat, type, folder, sheets = 1, skip = 0, lines = FALSE, ..., verbose = TRUE)
 {
         
         ## initial checks
@@ -39,6 +39,6 @@ read.to.list <-
         }
         
         ## read data into list object
-        read2list(fln, sheets=sheets, skip=skip, ..., verbose = verbose)
+        read2list(fln, sheets=sheets, skip=skip, lines=lines, ..., verbose = verbose)
         
 }

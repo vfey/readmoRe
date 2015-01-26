@@ -9,7 +9,7 @@
   a number of different file formats into a list of data frames.
 }
 \usage{
-  read.to.list(dat, type, folder, sheets = 1, skip = 0, ..., verbose = TRUE)
+  read.to.list(dat, type, folder, sheets = 1, skip = 0, lines = FALSE, ..., verbose = TRUE)
 }
 \arguments{
   \item{dat}{
@@ -26,6 +26,9 @@
 }
   \item{skip}{
   integer, number of lines to skip from the top of the file
+}
+  \item{lines}{
+  logical, should the file be read line by line into a character vector by readLines()?
 }
   \item{...}{
   additional arguments passed to 'read2list()'
