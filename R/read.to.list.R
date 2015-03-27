@@ -1,12 +1,12 @@
 read.to.list <-
-        function (dat, type, folder, sheets = 1, skip = 0, lines = FALSE, ..., verbose = TRUE)
+        function (dat, type, folder, sheets = 1, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 {
         
         ## initial checks
         if (!is.character(dat)) stop("'dat' must be a character vector!")
         
         ## define valid file extensions
-        ext <- c(".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions
+        ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions
         
         ## look for certain file types; if set, 'dat' will be ignored and set to "all"
         if (!missing(type)) {

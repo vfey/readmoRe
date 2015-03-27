@@ -1,11 +1,11 @@
 read2list <-
-		function (dat, sheets = 1, skip = 0, lines = FALSE, ..., verbose = TRUE)
+		function (dat, sheets = 1, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 {
 	
 	sheets <- as.list(sheets)
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
-	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData")
+	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData")
 	valid <- ext.all %in% val.ext
 	if (any(!valid)) {
 		if (all(!valid)) { stop("File type(s) not valid.") }
@@ -23,18 +23,27 @@ read2list <-
 	dfl <- lapply(1 : length(dat), function(fl) {
 				x <- dat[fl]
 				ext <- sub(".+(\\.[a-z]{3,4}$)", "\\1", x)
-				if (ext %in% c(".txt", ".tsv", ".csv")) {
+				if (ext %in% c(".txt", ".tsv", ".csv", ".gtf", ".gff")) {
 					if (verbose) cat(paste("Reading text file ", x, "...", sep = ""))
-					ve <- c(",", ";", "\t")
-					l <- readLines(x, n = 1+skip)
-					l <- l[length(l)]
-					se <- which(lapply(ve, function(y) grep(y, l)) == 1)
-					sep <- ve[se]
+					if (is.null(sep)) {
+						ve <- c(",", ";", "\t")
+						l <- readLines(x, n = 1+skip)
+						l <- l[length(l)]
+						se <- which(lapply(ve, function(y) grep(y, l)) == 1)
+						sep <- ve[se]
+						if (length(sep) > 1) {
+							if ("\t" %in% sep) {
+								sep <- "\t"
+							} else {
+								stop("Found more than 1 possible field delimiter. Please set 'sep' manually.")
+							}
+						}
+					}
 					dec <- ifelse(sep == ";", ",", ".")
 					if (lines) {
 						dT <- readLines(x)
 					} else {
-						dT <- read.delim(x, header = TRUE, dec = dec,
+						dT <- read.delim(x, dec = dec,
 								sep = sep, comment.char = "", skip=skip, ...)
 						dT <- rm.empty.cols(dT)
 					}

@@ -11,7 +11,7 @@ get.skip <-
         if (!file.exists(file)) stop("File not found!")
         
         ## read file header
-        if (!missing(pattern)) n <- -1
+        if (!missing(pattern) && n==1) n <- -1
         h <- readLines(file, n, warn=FALSE)
         
         ## search pattern

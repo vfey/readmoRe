@@ -9,14 +9,14 @@
   a number of different file formats into a list of data frames.
 }
 \usage{
-  read.to.list(dat, type, folder, sheets = 1, skip = 0, lines = FALSE, ..., verbose = TRUE)
+  read.to.list(dat, type, folder, sheets = 1, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 }
 \arguments{
   \item{dat}{
   character, the file name
 }
   \item{type}{
-  character, file extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".xls", ".xlsx", ".xdr", ".RData"
+  character, file extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData"
 }
   \item{folder}{
   character, folder where the file is found
@@ -26,6 +26,9 @@
 }
   \item{skip}{
   integer, number of lines to skip from the top of the file
+}
+  \item{sep}{
+  character, field delimiter passed to 'read.delim' when reading text files
 }
   \item{lines}{
   logical, should the file be read line by line into a character vector by readLines()?
