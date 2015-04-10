@@ -39,7 +39,13 @@ read2list <-
 							}
 						}
 					}
-					dec <- ifelse(sep == ";", ",", ".")
+					dsep <- c(",", ".")
+					dsep.regex <- c(paste0("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$"), paste0("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$"))
+					l <- readLines(x, n = 2+skip)
+					l <- l[length(l)]
+					lspl <- strsplit(l, sep)[[1]]
+					ds <- unique(unlist(lapply(lspl, function(z) which(lapply(dsep.regex, function(y) grep(y, z)) == 1))))
+					dec <- dsep[ds]
 					if (lines) {
 						dT <- readLines(x)
 					} else {
