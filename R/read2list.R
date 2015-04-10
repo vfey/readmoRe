@@ -40,7 +40,7 @@ read2list <-
 						}
 					}
 					dsep <- c(",", ".")
-					dsep.regex <- c(paste0("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$"), paste0("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$"))
+					dsep.regex <- c(paste("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$", sep=""), paste("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$", sep=""))
 					l <- readLines(x, n = 2+skip)
 					l <- l[length(l)]
 					lspl <- strsplit(l, sep)[[1]]
