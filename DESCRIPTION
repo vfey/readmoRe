@@ -1,8 +1,8 @@
 Package: genRal
 Type: Package
 Title: Utilities for data analysis
-Version: 0.2-1
-Date: 2015-04-10
+Version: 0.2-2
+Date: 2015-04-29
 Author: Vidal Fey
 Maintainer: Vidal Fey <vidal.fey@utu.fi>
 Description: This package contains tools and helper functions to perform (usually small) manipulations of data structures such as data frames, matrices and lists, assist in gene expression data analysis and provide specific functionality to analysis scripts.
