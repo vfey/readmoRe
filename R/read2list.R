@@ -2,6 +2,7 @@ read2list <-
 		function (dat, sheets = 1, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 {
 	
+	cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
 	sheets <- as.list(sheets)
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
@@ -24,7 +25,7 @@ read2list <-
 				x <- dat[fl]
 				ext <- sub(".+(\\.[a-z]{3,4}$)", "\\1", x)
 				if (ext %in% c(".txt", ".tsv", ".csv", ".gtf", ".gff")) {
-					if (verbose) cat(paste("Reading text file ", x, "...", sep = ""))
+					if (verbose) cat(paste("Reading text file ", basename(x), "...", sep = ""))
 					if (is.null(sep)) {
 						ve <- c(",", ";", "\t")
 						l <- readLines(x, n = 1+skip)
@@ -57,7 +58,7 @@ read2list <-
 					if (verbose) cat("done\n")
 				}
 				if (ext == ".vcf") {
-					if (verbose) cat(paste("Reading variant call file", x, "...", sep=""))
+					if (verbose) cat(paste("Reading variant call file ", basename(x), "...", sep=""))
 					sep <- get.sep(x, pattern="#CHROM")
 					dec <- ifelse(sep == ";", ",", ".")
 					if (skip == 0) skip <- get.skip(x, pattern="#CHROM")
@@ -69,7 +70,7 @@ read2list <-
 				}
 				if (length(grep(".xls", ext)) > 0) {
 					xl <- match(fl, nx)
-					if (verbose) cat(paste("Reading Excel file ", x, "...\n", sep = ""))
+					if (verbose) cat(paste("Reading Excel file ", basename(x), "...\n", sep = ""))
 					if (skip != 0) {
 						skip <- unlist(skip)[1]
 						warning(paste("The same 'skip' value will be used for all sheets:", skip), call. = FALSE)
@@ -86,7 +87,7 @@ read2list <-
 					names(dl) <- paste("sheet", sheets[[xl]])
 				}
 				if (ext == ".xdr") {
-					if (verbose) cat(paste("Reading object image file ", x, "...", sep = ""))
+					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))
 					dx <- loadObject(x)
 					if (!is.list(dx)) {
 						dx <- list(dx)
@@ -94,7 +95,7 @@ read2list <-
 					if (verbose) cat("done\n")
 				}
 				if (ext == ".RData") {
-					if (verbose) cat(paste("Reading object image file ", x, "...", sep = ""))
+					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))
 					l <- ls()
 					load(x)
 					nl <- ls()
