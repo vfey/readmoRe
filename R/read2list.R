@@ -1,9 +1,8 @@
 read2list <-
-		function (dat, sheets = 1, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
+		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 {
 	
 	cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
-	sheets <- as.list(sheets)
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
 	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData")
@@ -13,11 +12,24 @@ read2list <-
 		else { dat <- dat[valid] }
 	}
 	nx <- grep(".xls", ext.all)
-	if (length(nx) > 0) {
-		if (length(nx) > 1 && length(sheets) == 1) {
-			sheets <- rep(sheets, length(nx))
-		} else if (length(nx) != length(sheets)) {
-			stop("Length of 'nsheets' and number of Excel files must match if length of 'sheets' is greater than one.")
+	if (!is.null(sheet)) {
+		nsheets <- NULL
+		sheets <- as.list(sheet)
+		if (length(nx) > 0) {
+			if (length(nx) > 1 && length(sheets) == 1) {
+				sheets <- rep(sheets, length(nx))
+			} else if (length(nx) != length(sheets)) {
+				stop("Length of 'sheet' and number of Excel files must match if length of 'sheet' is greater than one.")
+			}
+		}
+	} else {
+		nsheets <- as.list(nsheets)
+		if (length(nx) > 0) {
+			if (length(nx) > 1 && length(nsheets) == 1) {
+				nsheets <- rep(nsheets, length(nx))
+			} else if (length(nx) != length(nsheets)) {
+				stop("Length of 'nsheets' and number of Excel files must match if length of 'nsheets' is greater than one.")
+			}
 		}
 	}
 	dT <- dl <- dx <- dR <- NULL
@@ -75,16 +87,30 @@ read2list <-
 						skip <- unlist(skip)[1]
 						warning(paste("The same 'skip' value will be used for all sheets:", skip), call. = FALSE)
 					}
-					if (verbose) cat(paste(" Reading ", length(sheets[[xl]]), " sheet(s)...\n", sep = ""))
-					dl <- lapply(sheets[[xl]], function(z) {
-								if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-								xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
-								if (verbose) cat("done\n")
-								if (is.null(xls[[1]])) warning("Error while reading", x,
-											"Returning", xls)
-								xls
-							})
-					names(dl) <- paste("sheet", sheets[[xl]])
+					if (!is.null(sheet)) {
+						if (verbose) cat(paste(" Reading ", length(sheets[[xl]]), " sheet(s)...\n", sep = ""))
+						dl <- lapply(sheets[[xl]], function(z) {
+									if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
+									xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
+									if (verbose) cat("done\n")
+									if (is.null(xls[[1]])) warning("Error while reading", x,
+												"Returning", xls)
+									xls
+								})
+						names(dl) <- paste("sheet", sheets[[xl]])
+					} else {
+						nsheets <- 1:nsheets[[xl]]
+						if (verbose) cat(paste(" Reading ", length(nsheets), " sheet(s)...\n", sep = ""))
+						dl <- lapply(nsheets, function(z) {
+									if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
+									xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
+									if (verbose) cat("done\n")
+									if (is.null(xls[[1]])) warning("Error while reading", x,
+												"Returning", xls)
+									xls
+								})
+						names(dl) <- paste("sheet", nsheets)
+					}
 				}
 				if (ext == ".xdr") {
 					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))

@@ -14,8 +14,15 @@
   \item{dat}{
   character, the file name
 }
-  \item{sheets}{
-  integer, number of sheets to be read if file is of type ".xls" or ".xlsx"
+  \item{nsheets}{
+  integer, number of sheets to be read if file is of type ".xls" or ".xlsx". All sheets starting from 1 up to the given
+  number in the respective data file will be read. If more than one file is read this must be be an integer vector with the
+  numbers of sheets in exactly the same order as the files. 
+}
+  \item{sheet}{
+  integer, sheet(s) to be read if file is of type ".xls" or ".xlsx". One sheet defined by the given integer in the respective
+  data file will be read. If more than one file is read this must be be an integer vector with the sheet numbers in exactly
+  the same order as the files.
 }
   \item{skip}{
   integer, number of lines to skip from the top of the file
