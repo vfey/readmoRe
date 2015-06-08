@@ -41,6 +41,6 @@ read.to.list <-
         }
         
         ## read data into list object
-        read2list(fln, sheets=sheets, skip=skip, lines=lines, ..., verbose = verbose)
+        read2list(fln, nsheets=nsheets, sheet=sheet, skip=skip, lines=lines, ..., verbose = verbose)
         
 }
