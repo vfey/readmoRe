@@ -1,7 +1,7 @@
 Package: genRal
 Type: Package
 Title: Utilities for data analysis
-Version: 0.2-3
+Version: 0.2-4
 Date: 2015-06-08
 Author: Vidal Fey
 Maintainer: Vidal Fey <vidal.fey@utu.fi>

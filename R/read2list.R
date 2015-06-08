@@ -88,7 +88,7 @@ read2list <-
 						warning(paste("The same 'skip' value will be used for all sheets:", skip), call. = FALSE)
 					}
 					if (!is.null(sheet)) {
-						if (verbose) cat(paste(" Reading ", length(sheets[[xl]]), " sheet(s)...\n", sep = ""))
+						if (verbose) cat(paste(" Reading sheet number ", sheets[[xl]], "...\n", sep = ""))
 						dl <- lapply(sheets[[xl]], function(z) {
 									if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
 									xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
