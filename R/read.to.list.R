@@ -5,7 +5,7 @@ read.to.list <-
         ## initial checks
         if (!is.character(dat)) stop("'dat' must be a character vector!")
         
-		cat("@ MULTI DATA LOADER\n")
+		if (verbose) cat("@ MULTI DATA LOADER\n")
 		
         ## define valid file extensions
         ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions

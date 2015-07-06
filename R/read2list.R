@@ -2,7 +2,7 @@ read2list <-
 		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
 {
 	
-	cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
+	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
 	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData")
