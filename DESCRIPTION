@@ -1,6 +1,6 @@
 Package: readR
 Type: Package
-Title: Utilities for data analysis
+Title: Utilities for importing and manipulating biomedical data files
 Version: 0.1-0
 Date: 2015-09-11
 Author: Vidal Fey
