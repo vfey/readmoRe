@@ -1,6 +1,6 @@
-\name{genRal-package}
-\alias{genRal-package}
-\alias{genRal}
+\name{readR-package}
+\alias{readR-package}
+\alias{readR}
 \docType{package}
 \title{
   Utilities for data analysis
@@ -13,7 +13,7 @@
 }
 \details{
 \tabular{ll}{
-  Package: \tab genRal\cr
+  Package: \tab readR\cr
   Type: \tab Package\cr
   Version: \tab 0.1-0\cr
   Date: \tab 2011-01-07\cr

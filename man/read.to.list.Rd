@@ -9,7 +9,7 @@
   a number of different file formats into a list of data frames.
 }
 \usage{
-  read.to.list(dat, type, folder, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
+  read.to.list(dat, type, folder, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE, x.verbose = FALSE)
 }
 \arguments{
   \item{dat}{
@@ -40,11 +40,17 @@
   \item{lines}{
   logical, should the file be read line by line into a character vector by readLines()?
 }
+  \item{dec}{
+  character, the decimal separator for numbers
+}
   \item{...}{
   additional arguments passed to 'read2list()'
 }
   \item{verbose}{
   logical, should verbose output be printed?
+}
+  \item{x.verbose}{
+  logical, should extended verbose output be printed?
 }
 }
 \value{
