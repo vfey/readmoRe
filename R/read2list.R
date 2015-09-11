@@ -1,11 +1,11 @@
 read2list <-
-		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, ..., verbose = TRUE)
+		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE, x.verbose = FALSE)
 {
 	
 	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
 	if (!is.character(dat)) stop("'dat' must be a character vector")
-	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", dat)
-	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData")
+	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", tolower(dat))
+	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata")
 	valid <- ext.all %in% val.ext
 	if (any(!valid)) {
 		if (all(!valid)) { stop("File type(s) not valid.") }
@@ -35,7 +35,7 @@ read2list <-
 	dT <- dl <- dx <- dR <- NULL
 	dfl <- lapply(1 : length(dat), function(fl) {
 				x <- dat[fl]
-				ext <- sub(".+(\\.[a-z]{3,4}$)", "\\1", x)
+				ext <- sub(".+(\\.[a-z]{3,4}$)", "\\1", tolower(x))
 				if (ext %in% c(".txt", ".tsv", ".csv", ".gtf", ".gff")) {
 					if (verbose) cat(paste("Reading text file ", basename(x), "...", sep = ""))
 					if (is.null(sep)) {
@@ -52,33 +52,43 @@ read2list <-
 							}
 						}
 					}
-					dsep <- c(",", ".")
-					dsep.regex <- c(paste("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$", sep=""), paste("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$", sep=""))
-					l <- readLines(x, n = 2+skip)
-					l <- l[length(l)]
-					lspl <- strsplit(l, sep)[[1]]
-					ds <- unique(unlist(lapply(lspl, function(z) which(lapply(dsep.regex, function(y) grep(y, z)) == 1))))
-					dec <- dsep[ds]
+					if (is.null(dec)) {
+						dsep <- c(",", ".")
+						dsep.regex <- c(paste("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$", sep=""), paste("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$", sep=""))
+						l <- readLines(x, n = 2+skip)
+						l <- l[length(l)]
+						lspl <- strsplit(l, sep)[[1]]
+						ds <- unique(unlist(lapply(lspl, function(z) which(lapply(dsep.regex, function(y) grep(y, z)) == 1))))
+						decsep <- dsep[ds]
+					}
 					if (lines) {
-						dT <- readLines(x)
+						dT <- readLines(x, ...)
 					} else {
-						dT <- read.delim(x, dec = dec,
+						dT <- read.delim(x, dec = decsep,
 								sep = sep, comment.char = "", skip=skip, ...)
 						dT <- rm.empty.cols(dT)
 					}
 					dT <- list(dT)
 					if (verbose) cat("done\n")
+					if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 				}
 				if (ext == ".vcf") {
 					if (verbose) cat(paste("Reading variant call file ", basename(x), "...", sep=""))
 					sep <- get.sep(x, pattern="#CHROM")
-					dec <- ifelse(sep == ";", ",", ".")
+					if (is.null(dec)) {
+						decsep <- ifelse(sep == ";", ",", ".")
+					}
 					if (skip == 0) skip <- get.skip(x, pattern="#CHROM")
-					dT <- read.delim(x, header = TRUE, dec = dec,
-							sep = sep, comment.char = "", skip=skip, ...)
-					dT <- rm.empty.cols(dT)
+					if (lines) {
+						dT <- readLines(x, ...)
+					} else {
+						dT <- read.delim(x, header = TRUE, dec = decsep,
+								sep = sep, comment.char = "", skip=skip, ...)
+						dT <- rm.empty.cols(dT)
+					}
 					dT <- list(dT)
 					if (verbose) cat("done\n")
+					if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 				}
 				if (length(grep(".xls", ext)) > 0) {
 					xl <- match(fl, nx)
@@ -120,7 +130,7 @@ read2list <-
 					}
 					if (verbose) cat("done\n")
 				}
-				if (ext == ".RData") {
+				if (ext == ".rdata") {
 					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))
 					l <- ls()
 					load(x)
