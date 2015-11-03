@@ -2,7 +2,7 @@ read2list <-
 		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE, x.verbose = FALSE)
 {
 	
-	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
+	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("readR")), "\n")
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(dat))
 	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata")
@@ -125,9 +125,9 @@ read2list <-
 				if (ext == ".xdr") {
 					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))
 					dx <- loadObject(x)
-					if (!is.list(dx)) {
-						dx <- list(dx)
-					}
+					dx.l <- list()
+					dx.l[[1]] <- dx
+					dx <- dx.l
 					if (verbose) cat("done\n")
 				}
 				if (ext == ".rdata") {
@@ -137,9 +137,9 @@ read2list <-
 					nl <- ls()
 					if (length(nl) == length(l) + 2) {
 						dR <- get(nl[- c(which(nl == "l"), match(l, nl))])
-						if (!is.list(dR)) {
-							dR <- list(dR)
-						}
+						dR.l <- list()
+						dR.l[[1]] <- dR
+						dR <- dR.l
 					} else {
 						stop("Image file must contain only one (1) object!")
 					}
