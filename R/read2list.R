@@ -133,10 +133,8 @@ read2list <-
 				if (ext == ".rdata") {
 					if (verbose) cat(paste("Reading object image file ", basename(x), "...", sep = ""))
 					l <- ls()
-					cat("    \nExisting objects:", l, "\n")
 					load(x)
 					nl <- ls()
-					cat("    \nNew objects:", nl, "\n")
 					if (length(nl) == length(l) + 2) {
 						dR <- get(nl[- c(which(nl == "l"), match(l, nl))])
 						dR.l <- list()
@@ -145,6 +143,9 @@ read2list <-
 					} else {
 						stop("Image file must contain only one (1) object!")
 					}
+					if ("dl" %in% ls()) rm("dl")
+					if ("dx" %in% ls()) rm("dx")
+					if ("dT" %in% ls()) rm("dT")
 					if (verbose) cat("done\n")
 				}
 				c(dT, dl, dx, dR)
