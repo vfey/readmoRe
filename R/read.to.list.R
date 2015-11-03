@@ -22,7 +22,7 @@ read.to.list <-
         if (length(dat) == 1 && dat == "all") {
                 if (missing(folder)) stop("Folder name missing!")
                 fls <- dir(path = folder, full.names=TRUE, recursive=TRUE)
-                ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", basename(fls)) ## extract file extensions
+                ext.all <- sub(".+(\\.[a-z]{3,5}$)", "\\1", basename(fls)) ## extract file extensions
                 valid <- ext.all %in% ext
                 if (!any(valid)) stop("No valid files found in directory.")
                 fln <- fls[valid] ## generate vector of paths of valid files 

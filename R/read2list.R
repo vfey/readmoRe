@@ -4,7 +4,7 @@ read2list <-
 	
 	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("genRal")), "\n")
 	if (!is.character(dat)) stop("'dat' must be a character vector")
-	ext.all <- sub(".+(\\.[a-z]{3,4}$)", "\\1", tolower(dat))
+	ext.all <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(dat))
 	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata")
 	valid <- ext.all %in% val.ext
 	if (any(!valid)) {
@@ -35,7 +35,7 @@ read2list <-
 	dT <- dl <- dx <- dR <- NULL
 	dfl <- lapply(1 : length(dat), function(fl) {
 				x <- dat[fl]
-				ext <- sub(".+(\\.[a-z]{3,4}$)", "\\1", tolower(x))
+				ext <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(x))
 				if (ext %in% c(".txt", ".tsv", ".csv", ".gtf", ".gff")) {
 					if (verbose) cat(paste("Reading text file ", basename(x), "...", sep = ""))
 					if (is.null(sep)) {
