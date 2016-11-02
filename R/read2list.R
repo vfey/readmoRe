@@ -91,7 +91,7 @@ read2list <-
 					if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 				}
 				if (length(grep(".xls", ext)) > 0) {
-					test.xls <- try(suppressWarnings(read.delim(x, nrows=10)), silent=TRUE)
+					test.xls <- try(suppressWarnings(read.delim(x, nrows=10, skipNul=TRUE)), silent=TRUE)
 					if (!is(test.xls, "try-error")) {
 						if (verbose) cat(paste("Reading text file (named as Excel file) ", basename(x), "...", sep = ""))
 						if (is.null(sep)) {
