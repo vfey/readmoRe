@@ -3,6 +3,6 @@ exportPattern("^[[:alpha:]]+")
 
 # Import all packages listed as Imports or Depends
 import(
-  gdata,
   R.utils
   )
+importFrom(gdata,read.xls)
