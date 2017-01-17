@@ -91,42 +91,45 @@ read2list <-
 					if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 				}
 				if (length(grep(".xls", ext)) > 0) {
-					test.xls <- try(suppressWarnings(read.delim(x, nrows=10, skipNul=TRUE)), silent=TRUE)
+					test.xls <- try(suppressWarnings(read.delim(x, nrows=10, skipNul=TRUE, header=FALSE, stringsAsFactors=FALSE)), silent=TRUE)
 					if (!is(test.xls, "try-error")) {
-						if (verbose) cat(paste("Reading text file (named as Excel file) ", basename(x), "...", sep = ""))
-						if (is.null(sep)) {
-							ve <- c(",", ";", "\t")
-							l <- readLines(x, n = 1+skip)
-							l <- l[length(l)]
-							se <- which(lapply(ve, function(y) grep(y, l)) == 1)
-							sep <- ve[se]
-							if (length(sep) > 1) {
-								if ("\t" %in% sep) {
-									sep <- "\t"
-								} else {
-									stop("Found more than 1 possible field delimiter. Please set 'sep' manually.")
+						test.pat <- grep("\\", test.xls[[1]], fixed=T) && grep("styles.xml", test.xls[[1]]) && grep("workbook.xml", test.xls[[1]])
+						if (is.na(test.pat)) {
+							if (verbose) cat(paste("Reading text file (named as Excel file) ", basename(x), "...", sep = ""))
+							if (is.null(sep)) {
+								ve <- c(",", ";", "\t")
+								l <- readLines(x, n = 1+skip)
+								l <- l[length(l)]
+								se <- which(lapply(ve, function(y) grep(y, l)) == 1)
+								sep <- ve[se]
+								if (length(sep) > 1) {
+									if ("\t" %in% sep) {
+										sep <- "\t"
+									} else {
+										stop("Found more than 1 possible field delimiter. Please set 'sep' manually.")
+									}
 								}
 							}
+							if (is.null(dec)) {
+								dsep <- c(",", ".")
+								dsep.regex <- c(paste("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$", sep=""), paste("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$", sep=""))
+								l <- readLines(x, n = 2+skip)
+								l <- l[length(l)]
+								lspl <- strsplit(l, sep)[[1]]
+								ds <- unique(unlist(lapply(lspl, function(z) which(lapply(dsep.regex, function(y) grep(y, z)) == 1))))
+								decsep <- dsep[ds]
+							}
+							if (lines) {
+								dT <- readLines(x, ...)
+							} else {
+								dT <- read.delim(x, dec = decsep,
+										sep = sep, comment.char = "", skip=skip, ...)
+								dT <- rm.empty.cols(dT)
+							}
+							dT <- list(dT)
+							if (verbose) cat("done\n")
+							if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 						}
-						if (is.null(dec)) {
-							dsep <- c(",", ".")
-							dsep.regex <- c(paste("^[[:digit:]]{1,}", dsep[1], "[[:digit:]]{1,}$", sep=""), paste("^[[:digit:]]{1,}\\", dsep[2], "[[:digit:]]{1,}$", sep=""))
-							l <- readLines(x, n = 2+skip)
-							l <- l[length(l)]
-							lspl <- strsplit(l, sep)[[1]]
-							ds <- unique(unlist(lapply(lspl, function(z) which(lapply(dsep.regex, function(y) grep(y, z)) == 1))))
-							decsep <- dsep[ds]
-						}
-						if (lines) {
-							dT <- readLines(x, ...)
-						} else {
-							dT <- read.delim(x, dec = decsep,
-									sep = sep, comment.char = "", skip=skip, ...)
-							dT <- rm.empty.cols(dT)
-						}
-						dT <- list(dT)
-						if (verbose) cat("done\n")
-						if (x.verbose && is.null(dec)) cat(paste0(" (Decimal separator detected: ", sQuote(decsep), ")\n"))
 					} else {
 						xl <- match(fl, nx)
 						if (verbose) cat(paste("Reading Excel file ", basename(x), "...\n", sep = ""))
