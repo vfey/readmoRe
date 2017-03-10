@@ -1,5 +1,57 @@
+#' @title Utilities for data import
+#' @docType package
+#' @name readR
+#' @description A collection of utilities for reading and importing data into R by performing (usually small) manipulations of
+#'     data structures such as data frames, matrices and list and automatically determining import parameters.
+#' @author Vidal Fey <vidal.fey@utu.fi>
+#' @details \tabular{ll}{
+#' Package: \tab readR\cr
+#' Type: \tab Package\cr
+#' Initial version: \tab 0.1-0\cr
+#' Created: \tab 2011-01-07\cr
+#' License: \tab UTU-internal use only\cr
+#' LazyLoad: \tab yes\cr
+#' }
+#' The main function of the package is \code{read.to.list} which reads a number of different file formats into a list of data objects
+#'     such as data frames, depending on the source file.
+#' @keywords package
+#' @import R.utils
+#' @importFrom methods is
+#' @importFrom utils packageVersion read.delim
+#' @importFrom gdata read.xls
+NULL
+#'
+#' Read various input file formats into a list of data frames. Wrapper function for 'read2list' to automate
+#'     reading further and avoid errors due to missing folders or files.
+#' @description \command{read.to.list} is meant to act as a universal reading function as it attempts to read
+#'     a number of different file formats into a list of data frames.
+#' @param dat \code{character}. File path.
+#' @param type \code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData".
+#' @param folder \code{character}. Folder where the file is found.
+#' @param nsheets \code{integer}. Number of sheets to be read if file is of type ".xls" or ".xlsx". All sheets starting from 1 up to the
+#'     given number in the respective data file will be read. If more than one file is read this must be be an integer vector with the
+#'     numbers of sheets in exactly the same order as the files. 
+#' @param sheet \code{integer}. Sheet(s) to be read if file is of type ".xls" or ".xlsx". One sheet defined by the given integer in the
+#'     respective data file will be read. If more than one file is read this must be be an integer vector with the sheet numbers in exactly
+#'     the same order as the files.
+#' @param skip \code{integer}. Number of lines to skip from the top of the file.
+#' @param sep \code{character}. Field delimiter passed to 'read.delim' when reading text files.
+#' @param lines \code{lines}. Should the file be read line by line into a character vector by readLines()?
+#' @param dec \code{character}. The decimal separator for numbers.
+#' @param ... Additional arguments passed to 'read2list()'.
+#' @param verbose \code{logical}. Should verbose output be printed?
+#' @param x.verbose \code{logical}. Should extended verbose output be printed?
+#' @return A list of data frames.
+#' @seealso \code{\link[base]{readLines}}
+#' @seealso \code{\link[utils]{read.delim}}
+#' @seealso \code{\link[gdata]{read.xls}}
+#' @seealso \code{\link[base]{load}}
+#' @seealso \code{\link[R.utils]{loadObject}}
+#' @keywords utilities
+#' @export
 read.to.list <-
-        function (dat, type, folder, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE, x.verbose = FALSE)
+        function (dat, type, folder, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE,
+                  x.verbose = FALSE)
 {
         
         ## initial checks
