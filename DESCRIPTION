@@ -1,12 +1,13 @@
 Package: readR
 Type: Package
 Title: Utilities for importing and manipulating biomedical data files
-Version: 0.1-8
-Date: 2017-01-17
+Version: 0.2-0
+Date: 2017-03-10
 Author: Vidal Fey
 Maintainer: Vidal Fey <vidal.fey@utu.fi>
 Description: This package contains tools and helper functions to perform (usually small) manipulations of data structures such as data frames, matrices and lists, assist in gene expression data analysis and provide specific functionality to analysis scripts.
-Depends: R.utils
-Imports: gdata
+Depends: R.utils, utils
+Imports: gdata, methods
 License: file LICENSE
 LazyLoad: yes
+RoxygenNote: 6.0.1

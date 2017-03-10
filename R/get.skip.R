@@ -4,17 +4,19 @@
 ###############################################################################
 
 
+#' @export
 get.skip <-
-        function(file, n=1, pattern)
+        function(file, n=1, pattern=NULL)
 {
         ## initial checks
         if (!file.exists(file)) stop("File not found!")
         
         ## read file header
-        if (!missing(pattern) && n==1) n <- -1
+        if (!is.null(pattern) && n==1) n <- -1
         h <- readLines(file, n, warn=FALSE)
         
         ## search pattern
+		if (is.null(pattern)) pattern <- ""
         pat <- grep(pattern, h)
         if (length(pat) > 1) {
                 warning(paste("Pattern found more that once [", length(pat), "times ]. First one is used..."))

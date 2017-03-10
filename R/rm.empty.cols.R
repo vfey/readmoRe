@@ -1,3 +1,4 @@
+#' @export
 rm.empty.cols <-
 function(x, na.only = FALSE)
 {

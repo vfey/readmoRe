@@ -7,7 +7,7 @@
   \command{get.skip} attempts to determine the number of rows that could be skipped when reading text files.
 }
 \usage{
-  get.skip(file, n=1, pattern)
+  get.skip(file, n=1, pattern=NULL)
 }
 \arguments{
   \item{file}{

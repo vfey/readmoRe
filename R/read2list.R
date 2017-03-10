@@ -1,3 +1,4 @@
+#' @export
 read2list <-
 		function (dat, nsheets = 1, sheet = NULL, skip = 0, sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE, x.verbose = FALSE)
 {
