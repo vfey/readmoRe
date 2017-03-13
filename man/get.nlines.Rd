@@ -13,7 +13,8 @@ get.nlines(file, n = 1, pattern = NULL, incl.header = FALSE)
 
 \item{pattern}{\code{character}. Search pattern to find a certain row in 'file'. Passed to 'get.skip'.}
 
-\item{incl.header}{\code{logical}. Should the file header be included in the count? Length of the header will be determined by 'get.skip'}
+\item{incl.header}{\code{logical}. Should the file header be included in the count? Length of the header will be determined by 'get.skip'
+and the 'pattern' argument. Defaults to 'FALSE'.}
 }
 \value{
 An integer value.

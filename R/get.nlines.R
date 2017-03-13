@@ -9,7 +9,7 @@
 #' @param n \code{integer}. Maximum number of lines to read when determining the 'skip' value. Passed to 'get.skip'.
 #' @param pattern \code{character}. Search pattern to find a certain row in 'file'. Passed to 'get.skip'.
 #' @param incl.header \code{logical}. Should the file header be included in the count? Length of the header will be determined by 'get.skip'
-#  and the 'pattern' argument. Defaults to 'FALSE'.
+#'     and the 'pattern' argument. Defaults to 'FALSE'.
 #' @return An integer value.
 
 #' @export
