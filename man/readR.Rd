@@ -15,13 +15,13 @@ Package: \tab readR\cr
 Type: \tab Package\cr
 Initial version: \tab 0.1-0\cr
 Created: \tab 2011-01-07\cr
-License: \tab UTU-internal use only\cr
+License: \tab Internal use only\cr
 LazyLoad: \tab yes\cr
 }
 The main function of the package is \code{read.to.list} which reads a number of different file formats into a list of data objects
     such as data frames, depending on the source file.
 }
 \author{
-Vidal Fey <vidal.fey@utu.fi>
+Vidal Fey <vidal.fey@geneviatechnologies.com>
 }
 \keyword{package}

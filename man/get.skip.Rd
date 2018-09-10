@@ -24,7 +24,7 @@
   The 'skip' value. If no value is determined 0 (zero) is returned.
 }
 \author{
-  Vidal Fey \email{vidal.fey@utu.fi}
+  Vidal Fey \email{vidal.fey@geneviatechnologies.com}
 }
 \seealso{
   \command{\link[base]{readLines}}

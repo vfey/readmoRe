@@ -3,13 +3,13 @@
 #' @name readR
 #' @description A collection of utilities for reading and importing data into R by performing (usually small) manipulations of
 #'     data structures such as data frames, matrices and list and automatically determining import parameters.
-#' @author Vidal Fey <vidal.fey@utu.fi>
+#' @author Vidal Fey <vidal.fey@geneviatechnologies.com>
 #' @details \tabular{ll}{
 #' Package: \tab readR\cr
 #' Type: \tab Package\cr
 #' Initial version: \tab 0.1-0\cr
 #' Created: \tab 2011-01-07\cr
-#' License: \tab UTU-internal use only\cr
+#' License: \tab Internal use only\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #' The main function of the package is \code{read.to.list} which reads a number of different file formats into a list of data objects

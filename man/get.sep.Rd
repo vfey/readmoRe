@@ -24,7 +24,7 @@
   If successful, the filed delimiter. If more than on of the possible delimiters is found, an error is returned.
 }
 \author{
-  Vidal Fey \email{vidal.fey@utu.fi}
+  Vidal Fey \email{vidal.fey@geneviatechnologies.com}
 }
 \seealso{
   \command{\link[base]{readLines}}

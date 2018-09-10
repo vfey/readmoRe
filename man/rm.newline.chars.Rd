@@ -27,6 +27,6 @@
   A data frame.
 }
 \author{
-  Vidal Fey \email{vidal.fey@utu.fi}
+  Vidal Fey \email{vidal.fey@geneviatechnologies.com}
 }
 \keyword{ utilities }
