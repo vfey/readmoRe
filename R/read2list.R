@@ -7,7 +7,7 @@ read2list <-
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(dat))
 	if (x.verbose) cat(  "Detected file extesion(s)", sQuote(ext.all), "\n")
-	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata")
+	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata", ".xml")
 	valid <- ext.all %in% val.ext
 	if (any(!valid)) {
 		if (all(!valid)) { stop("File type(s) not valid.") }
@@ -202,7 +202,13 @@ read2list <-
 					if ("dT" %in% ls()) rm("dT")
 					if (verbose) cat("done\n")
 				}
-				c(dT, dl, dx, dR)
+				if (ext == ".xml") {
+					if (verbose) cat(paste("Reading XML file ", basename(x), "...", sep = ""))
+					dxml <- xml2::read_xml(x)
+					dxml <- list(dxml)
+					if (verbose) cat("done\n")
+				}
+				c(dT, dl, dx, dR, dxml)
 			})
 	names(dfl) <- basename(dat)
 	if (any(is.null(dfl))) {

@@ -12,7 +12,7 @@ read.to.list(dat, type, folder, nsheets = 1, sheet = NULL, skip = 0,
 \arguments{
 \item{dat}{\code{character}. File path.}
 
-\item{type}{\code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData".}
+\item{type}{\code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData", ".xml".}
 
 \item{folder}{\code{character}. Folder where the file is found.}
 

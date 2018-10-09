@@ -16,6 +16,7 @@
 #'     such as data frames, depending on the source file.
 #' @keywords package
 #' @import R.utils
+#' @import xml2
 #' @importFrom methods is
 #' @importFrom utils packageVersion read.delim
 #' @importFrom gdata read.xls
@@ -26,7 +27,7 @@ NULL
 #' @description \command{read.to.list} is meant to act as a universal reading function as it attempts to read
 #'     a number of different file formats into a list of data frames.
 #' @param dat \code{character}. File path.
-#' @param type \code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData".
+#' @param type \code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData", ".xml".
 #' @param folder \code{character}. Folder where the file is found.
 #' @param nsheets \code{integer}. Number of sheets to be read if file is of type ".xls" or ".xlsx". All sheets starting from 1 up to the
 #'     given number in the respective data file will be read. If more than one file is read this must be be an integer vector with the
@@ -55,7 +56,7 @@ read.to.list <-
   {
     
     ## define valid file extensions
-    ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData") ## index of valid file extensions
+    ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData", ".xml") ## index of valid file extensions
     
     ## look for certain file types; if set, 'dat' will be ignored and set to "all"
     if (!missing(type)) {
