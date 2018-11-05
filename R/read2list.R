@@ -34,7 +34,7 @@ read2list <-
 			}
 		}
 	}
-	dT <- dl <- dx <- dR <- NULL
+	dT <- dl <- dx <- dR <- dxml <- NULL
 	dfl <- lapply(1 : length(dat), function(fl) {
 				x <- dat[fl]
 				ext <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(x))
