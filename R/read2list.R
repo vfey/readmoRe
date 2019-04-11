@@ -154,7 +154,7 @@ read2list <-
 				      if (verbose) cat(paste(" Reading sheet number ", sheets[[xl]], "...\n", sep = ""))
 				      dl <- lapply(sheets[[xl]], function(z) {
 				        if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-				        xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
+				        xls <- rm.empty.cols(suppressMessages(gdata::read.xls(x, sheet = z, skip=skip, ...)))
 				        if (verbose) cat("done\n")
 				        if (is.null(xls[[1]])) warning("Error while reading", x,
 				                                       "Returning", xls)
@@ -166,7 +166,7 @@ read2list <-
 				      if (verbose) cat(paste(" Reading ", length(nsheets), " sheet(s)...\n", sep = ""))
 				      dl <- lapply(nsheets, function(z) {
 				        if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-				        xls <- rm.empty.cols(gdata::read.xls(x, sheet = z, skip=skip, ...))
+				        xls <- rm.empty.cols(suppressMessages(gdata::read.xls(x, sheet = z, skip=skip, ...)))
 				        if (verbose) cat("done\n")
 				        if (is.null(xls[[1]])) warning("Error while reading", x,
 				                                       "Returning", xls)
