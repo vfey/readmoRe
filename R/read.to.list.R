@@ -17,6 +17,7 @@
 #' @keywords package
 #' @import R.utils
 #' @import xml2
+#' @import readxl
 #' @importFrom methods is
 #' @importFrom utils packageVersion read.delim
 #' @importFrom gdata read.xls
@@ -45,7 +46,7 @@ NULL
 #' @return A list of data frames.
 #' @seealso \code{\link[base]{readLines}}
 #' @seealso \code{\link[utils]{read.delim}}
-#' @seealso \code{\link[gdata]{read.xls}}
+#' @seealso \code{\link[readxl]{read_excel}}
 #' @seealso \code{\link[base]{load}}
 #' @seealso \code{\link[R.utils]{loadObject}}
 #' @keywords utilities

@@ -6,12 +6,13 @@ read2list <-
 	if (verbose) cat("@ VERSATILE FILE READER v.", as.character(packageVersion("readR")), "\n")
 	if (!is.character(dat)) stop("'dat' must be a character vector")
 	ext.all <- sub(".+(\\.[a-z]{3,5}$)", "\\1", tolower(dat))
-	if (x.verbose) cat(  "Detected file extesion(s)", sQuote(ext.all), "\n")
+	if (x.verbose) cat(  "Detected file extension(s)", sQuote(ext.all), "\n")
 	val.ext <- c(".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".rdata", ".xml")
 	valid <- ext.all %in% val.ext
 	if (any(!valid)) {
 		if (all(!valid)) { stop("File type(s) not valid.") }
 		else { dat <- dat[valid] }
+		cat("NOTE:", sQuote(basename(dat[!valid])), "do(es) not exist or are (is) not of (a) valid file type(s)!\n")
 	}
 	nx <- grep(".xls", ext.all)
 	if (!is.null(sheet)) {
@@ -154,7 +155,7 @@ read2list <-
 				      if (verbose) cat(paste(" Reading sheet number ", sheets[[xl]], "...\n", sep = ""))
 				      dl <- lapply(sheets[[xl]], function(z) {
 				        if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-				        xls <- rm.empty.cols(suppressMessages(gdata::read.xls(x, sheet = z, skip=skip, ...)))
+				        xls <- rm.empty.cols(suppressMessages(readxl::read_excel(x, sheet = z, skip=skip, ...)))
 				        if (verbose) cat("done\n")
 				        if (is.null(xls[[1]])) warning("Error while reading", x,
 				                                       "Returning", xls)
@@ -166,7 +167,7 @@ read2list <-
 				      if (verbose) cat(paste(" Reading ", length(nsheets), " sheet(s)...\n", sep = ""))
 				      dl <- lapply(nsheets, function(z) {
 				        if (verbose) cat(paste("  Sheet ", z, "...", sep = ""))
-				        xls <- rm.empty.cols(suppressMessages(gdata::read.xls(x, sheet = z, skip=skip, ...)))
+				        xls <- rm.empty.cols(suppressMessages(readxl::read_excel(x, sheet = z, skip=skip, ...)))
 				        if (verbose) cat("done\n")
 				        if (is.null(xls[[1]])) warning("Error while reading", x,
 				                                       "Returning", xls)

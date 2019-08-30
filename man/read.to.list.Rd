@@ -50,7 +50,7 @@ A list of data frames.
 
 \code{\link[utils]{read.delim}}
 
-\code{\link[gdata]{read.xls}}
+\code{\link[readxl]{read_excel}}
 
 \code{\link[base]{load}}
 
