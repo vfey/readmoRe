@@ -5,9 +5,20 @@
 \title{Read various input file formats into a list of data frames. Wrapper function for 'read2list' to automate
     reading further and avoid errors due to missing folders or files.}
 \usage{
-read.to.list(dat, type, folder, nsheets = 1, sheet = NULL, skip = 0,
-  sep = NULL, lines = FALSE, dec = NULL, ..., verbose = TRUE,
-  x.verbose = FALSE)
+read.to.list(
+  dat,
+  type,
+  folder,
+  nsheets = 1,
+  sheet = NULL,
+  skip = 0,
+  sep = NULL,
+  lines = FALSE,
+  dec = NULL,
+  ...,
+  verbose = TRUE,
+  x.verbose = FALSE
+)
 }
 \arguments{
 \item{dat}{\code{character}. File path.}

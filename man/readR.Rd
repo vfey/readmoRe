@@ -3,7 +3,6 @@
 \docType{package}
 \name{readR}
 \alias{readR}
-\alias{readR-package}
 \title{Utilities for data import}
 \description{
 A collection of utilities for reading and importing data into R by performing (usually small) manipulations of
@@ -22,6 +21,6 @@ The main function of the package is \code{read.to.list} which reads a number of 
     such as data frames, depending on the source file.
 }
 \author{
-Vidal Fey <vidal.fey@geneviatechnologies.com>
+Vidal Fey <vidal.fey@tuni.fi>
 }
 \keyword{package}

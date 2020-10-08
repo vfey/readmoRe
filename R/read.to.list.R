@@ -3,7 +3,7 @@
 #' @name readR
 #' @description A collection of utilities for reading and importing data into R by performing (usually small) manipulations of
 #'     data structures such as data frames, matrices and list and automatically determining import parameters.
-#' @author Vidal Fey <vidal.fey@geneviatechnologies.com>
+#' @author Vidal Fey <vidal.fey@tuni.fi>
 #' @details \tabular{ll}{
 #' Package: \tab readR\cr
 #' Type: \tab Package\cr
