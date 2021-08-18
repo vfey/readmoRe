@@ -11,6 +11,7 @@ read.to.list(
   folder,
   nsheets = 1,
   sheet = NULL,
+  keep.tibble = FALSE,
   skip = 0,
   sep = NULL,
   lines = FALSE,
@@ -23,7 +24,8 @@ read.to.list(
 \arguments{
 \item{dat}{\code{character}. File path.}
 
-\item{type}{\code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf", ".gff", ".xls", ".xlsx", ".xdr", ".RData", ".xml".}
+\item{type}{\code{character}. File extension to be read: one of ".txt", ".tsv", ".csv", ".vcf", ".gtf",
+".gff", ".xls", ".xlsx", ".xdr", ".RData", ".rds", ".rda", ".xml". See details.}
 
 \item{folder}{\code{character}. Folder where the file is found.}
 
@@ -31,9 +33,14 @@ read.to.list(
 given number in the respective data file will be read. If more than one file is read this must be be an integer vector with the
 numbers of sheets in exactly the same order as the files.}
 
-\item{sheet}{\code{integer}. Sheet(s) to be read if file is of type ".xls" or ".xlsx". One sheet defined by the given integer in the
-respective data file will be read. If more than one file is read this must be be an integer vector with the sheet numbers in exactly
-the same order as the files.}
+\item{sheet}{\code{integer} or \code{list}. Sheet(s) to be read if file is of type ".xls" or ".xlsx". The sheets defined by the given integer in the
+respective data file will be read. If more than one file is read this must be be a list with the sheet number(s) in exactly
+the same order as the files. If there are many files and only one sheet vector the same sheet(s) wiöl be read from
+all files.}
+
+\item{keep.tibble}{\code{logical}. Should the data from Excel files read with \code{readxl::read_excel} be coerce to 
+\code{data.frames} or kept in the original \code{tibble} format? Defaults to FALSE, i.e., a \code{data.frame}
+is returned.}
 
 \item{skip}{\code{integer}. Number of lines to skip from the top of the file.}
 
@@ -43,18 +50,54 @@ the same order as the files.}
 
 \item{dec}{\code{character}. The decimal separator for numbers.}
 
-\item{...}{Additional arguments passed to 'read2list()'.}
+\item{...}{Additional arguments passed to functions.}
 
 \item{verbose}{\code{logical}. Should verbose output be printed?}
 
 \item{x.verbose}{\code{logical}. Should extended verbose output be printed?}
 }
 \value{
-A list of data frames.
+A list of tibbles/data frames.
 }
 \description{
 \command{read.to.list} is meant to act as a universal reading function as it attempts to read
     a number of different file formats into a list of data frames.
+}
+\details{
+Excel files (file extension .xls or .xlsx) will be read by \code{readxl::read_excel}. A test is attempted
+    to determine whether the input file is genuinely derived from Excel or only named like an nExcel file. If the latter,
+    it will be attempted to read it as text file.
+    Text files are read as tables or by line if \code{lines} is \code{TRUE}.
+    For text files, field delimiters and decimal separators are determined automatically if not provided.
+    Files with the extensions .txt", ".tsv", ".csv", ".gtf" and ".gff" are treated and read as text files.
+    VCF files are also treated as text files but can noly be read in full (incl. header) if read by line. Otherwise,
+    if \code{skip} is \code{0}, the line with the column names will be determined automatically and the file read
+    as delimited text file.
+    XML files are read by \code{xml2::read_xml}.
+    ".RData" files are loaded and assigned a name.
+    ".rds" and ".rda" files are read by \code{readRDS}.
+    ".xdr" files are read by \code{R.utils::loadObject}.
+}
+\examples{
+# The function readxl::read_excel is used internally to read Excel files.
+# The example used their example data.
+readxl_datasets <- readxl::readxl_example("datasets.xlsx")
+# A randomly generated data frame was saved to a tab-separated text file
+# and two different R object files.
+tsv_datasets <- dir(system.file("extdata", package = "readmoRe"), full.names = TRUE)
+# All example data are read into a list. From the Excel file, the first
+# sheet is read.
+dat <- read.to.list(c(readxl_datasets, tsv_datasets))
+# All example data are read into a list. From the Excel file, the first
+# 3 sheets are read.
+dat <- read.to.list(c(readxl_datasets, tsv_datasets), nsheets=3)
+# All example data are read into a list. From the Excel file, sheets 1 and
+# 4 are read.
+dat <- read.to.list(c(readxl_datasets, tsv_datasets), sheet=c(1, 4))
+# From two Excel files, different sheets are read: 1 and 4 from the first
+# file and 2 and 3 from the second.
+# (For simplicity, the same example file is used.)
+dat <- read.to.list(c(readxl_datasets, readxl_datasets), sheet=list(c(1, 4), c(2, 3)))
 }
 \seealso{
 \code{\link[base]{readLines}}
@@ -66,5 +109,9 @@ A list of data frames.
 \code{\link[base]{load}}
 
 \code{\link[R.utils]{loadObject}}
+
+\code{\link[base]{readRDS}}
+
+\code{\link[readmoRe]{read2list}}
 }
 \keyword{utilities}

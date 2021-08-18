@@ -1,4 +1,4 @@
-# TODO: Determine the number of lines in a (large) text file without importing it
+# Determine the number of lines in a (large) text file without importing it
 # 
 # Author: vidal
 ###############################################################################

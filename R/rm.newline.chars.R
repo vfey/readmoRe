@@ -4,6 +4,16 @@
 ###############################################################################
 
 
+#' Remove 'newline' Characters From Imported Excel Sheets
+#' @description \command{rm.newline.chars} removes \sQuote{newline} characters (\code{\\n}) from any column of a data frame.
+#' @param x (\code{data.frame}). A data frame resulting from an imported Excel sheet by means of \command{read.xls}.
+#' @param verbose (\code{logical}). Should verbose output be printed, defaults to \code{TRUE}.
+#' @details \sQuote{Newline} characters in data frame rows are read verbatim and will cause rows in output
+#'     text files to be distributed across two ore more lines. Such characters, entered accidentally or
+#'     deliberately in the source Excel file, should be avoided. This function removes all \sQuote{newline}
+#'     characters found at the end of a line or replaces them when found within the line text.
+#' @return A data frame.
+#' @keywords utilities
 #' @export
 rm.newline.chars <-
                 function(x, verbose = TRUE)

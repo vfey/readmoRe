@@ -1,15 +1,15 @@
-Package: readR
+Package: readmoRe
 Type: Package
-Title: Utilities for importing and manipulating biomedical data files
-Version: 0.2-10
-Date: 2020-10-08
+Title: Utilities for Importing and Manipulating Biomedical Data Files
+Version: 0.2-13
+Date: 2021-08-17
 Author: Vidal Fey
-Maintainer: Vidal Fey <vidal.fey@tuni.fi>
-Description: This package contains tools and helper functions to perform (usually small) manipulations of data structures such as data frames, matrices and lists, assist in gene expression data analysis and provide specific functionality to analysis scripts.
-Depends: R.utils, utils
-Imports: gdata, methods, xml2, readxl
-License: file LICENSE
-Repository: genevia
+Maintainer: Vidal Fey <vidal.fey@gmail.com>
+Description: Tools to read various file types into one list of data structures, usually, but not limited to, data frames.
+  Excel files are read sheet-wise, i.e., all or a selection of sheets can be read. Field delimiters and decimal
+  separators are determined automatically.
+Depends: R (>= 3.5.0), R.utils, utils
+Imports: methods, xml2, readxl, plyr
+License: GPL-3
 Encoding: UTF-8
-LazyLoad: yes
 RoxygenNote: 7.1.1

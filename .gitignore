@@ -5,3 +5,4 @@
 .project
 .settings
 *walware*
+.DS_Store

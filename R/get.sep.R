@@ -1,9 +1,15 @@
-# TODO: Determine field delimiter in text files
+# Determine field delimiter in text files
 # 
 # Author: vidal
 ###############################################################################
 
-
+#' Determine field delimiter in text files
+#' @param file \code{character}. Path name of a text file.
+#' @param n \code{integer}. Number of lines to be read by \code{readLines}. Defaults to 1.
+#' @param pattern \code{character}. Search pattern to find a specific line for determining the delimiter.
+#' @return If successful, the filed delimiter. If more than on of the possible delimiters is found, an error is returned.
+#' @seealso \command{\link[base]{readLines}}
+#' @keywords utilities
 #' @export
 get.sep <-
         function(file, n=1, pattern)
