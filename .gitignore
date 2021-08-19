@@ -1,8 +1,9 @@
-.Rproj.user
-.Rhistory
 .RData
+.Rbuildignore
+.Rhistory
 .Ruserdata
+.Rproj.user/
 .project
 .settings
-*walware*
 .DS_Store
+*walware*
