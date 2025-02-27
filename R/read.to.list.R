@@ -1,5 +1,4 @@
 #' @title Utilities for data import
-#' @docType package
 #' @name readmoRe
 #' @description A collection of utilities for reading and importing data into R by performing (usually small) manipulations of
 #'     data structures such as data frames, matrices and list and automatically determining import parameters.
@@ -15,6 +14,7 @@
 #' The main function of the package is \code{read.to.list} which reads a number of different file formats into a list of data objects
 #'     such as data frames, depending on the source file.
 #' @keywords package
+#' "_PACKAGE"
 #' @import R.utils
 #' @import xml2
 #' @import readxl
@@ -84,12 +84,12 @@ NULL
 #' # 3 sheets are read.
 #' dat <- read.to.list(c(readxl_datasets, tsv_datasets), nsheets=3)
 #' # All example data are read into a list. From the Excel file, sheets 1 and
-#' # 4 are read.
-#' dat <- read.to.list(c(readxl_datasets, tsv_datasets), sheet=c(1, 4))
-#' # From two Excel files, different sheets are read: 1 and 4 from the first
+#' # 3 are read.
+#' dat <- read.to.list(c(readxl_datasets, tsv_datasets), sheet=c(1, 3))
+#' # From two Excel files, different sheets are read: 1 and 3 from the first
 #' # file and 2 and 3 from the second.
 #' # (For simplicity, the same example file is used.)
-#' dat <- read.to.list(c(readxl_datasets, readxl_datasets), sheet=list(c(1, 4), c(2, 3)))
+#' dat <- read.to.list(c(readxl_datasets, readxl_datasets), sheet=list(c(1, 3), c(2, 3)))
 #' @export
 read.to.list <-
   function (dat, type, folder, nsheets = 1, sheet = NULL, keep.tibble = FALSE, skip = 0, sep = NULL,

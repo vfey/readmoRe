@@ -80,7 +80,7 @@ Excel files (file extension .xls or .xlsx) will be read by \code{readxl::read_ex
 }
 \examples{
 # The function readxl::read_excel is used internally to read Excel files.
-# The example used their example data.
+# The example uses their example data.
 readxl_datasets <- readxl::readxl_example("datasets.xlsx")
 # A randomly generated data frame was saved to a tab-separated text file
 # and two different R object files.
@@ -92,12 +92,12 @@ dat <- read.to.list(c(readxl_datasets, tsv_datasets))
 # 3 sheets are read.
 dat <- read.to.list(c(readxl_datasets, tsv_datasets), nsheets=3)
 # All example data are read into a list. From the Excel file, sheets 1 and
-# 4 are read.
-dat <- read.to.list(c(readxl_datasets, tsv_datasets), sheet=c(1, 4))
-# From two Excel files, different sheets are read: 1 and 4 from the first
+# 3 are read.
+dat <- read.to.list(c(readxl_datasets, tsv_datasets), sheet=c(1, 3))
+# From two Excel files, different sheets are read: 1 and 3 from the first
 # file and 2 and 3 from the second.
 # (For simplicity, the same example file is used.)
-dat <- read.to.list(c(readxl_datasets, readxl_datasets), sheet=list(c(1, 4), c(2, 3)))
+dat <- read.to.list(c(readxl_datasets, readxl_datasets), sheet=list(c(1, 3), c(2, 3)))
 }
 \seealso{
 \code{\link[base]{readLines}}

@@ -12,7 +12,7 @@ get.skip(file, n = 1, pattern = NULL)
 \item{n}{(\code{integer}). The number of lines to be read by \code{readLines()}.}
 
 \item{pattern}{(\code{character}). A search pattern like, e.g., a column  name that is used to find a particular
-line in the file to determine the {code{skip}} value.}
+line in the file to determine the \code{skip} value.}
 }
 \value{
 The \code{skip} value. If no value is determined 0 (zero) is returned.

@@ -9,7 +9,7 @@
 #' @param file (\code{character}). The file name.
 #' @param n (\code{integer}). The number of lines to be read by \code{readLines()}.
 #' @param pattern (\code{character}). A search pattern like, e.g., a column  name that is used to find a particular
-#'     line in the file to determine the {code{skip}} value.
+#'     line in the file to determine the \code{skip} value.
 #' @return The \code{skip} value. If no value is determined 0 (zero) is returned.
 #' @seealso \command{\link[base]{readLines}}
 #' @keywords utilities
