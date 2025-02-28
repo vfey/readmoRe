@@ -15,7 +15,7 @@ In addition, a formatting error in one documentation file was addressed and the 
 overview documentation was updated to now using the special "_PACKAGE" sentinel.
 
 ### Test environments (2025-02-28 - )
-* local OS X install: x86_64-apple-darwin24.2.0, R 4.4.2
+* local OS X install: x86_64-apple-darwin24.3.0, R 4.4.2
 * win-builder (devel, release and oldrelease)
 * Red Hat Enterprise Linux release 9.5 (Plow), R 4.4.2
 
