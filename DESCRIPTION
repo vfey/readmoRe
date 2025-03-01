@@ -1,9 +1,10 @@
 Package: readmoRe
 Type: Package
 Title: Utilities for Importing and Manipulating Biomedical Data Files
-Version: 0.2-14
-Date: 2025-02-27
-Author: Vidal Fey
+Version: 0.2-15
+Date: 2025-03-01
+Author: Vidal Fey [aut, cre]
+Authors@R: person("Vidal", "Fey", email = "vidal.fey@gmail.com", role=c("aut", "cre"))
 Maintainer: Vidal Fey <vidal.fey@gmail.com>
 Description: Tools to read various file types into one list of data structures, usually, but not limited to, data frames.
   Excel files are read sheet-wise, i.e., all or a selection of sheets can be read. Field delimiters and decimal

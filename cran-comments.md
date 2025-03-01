@@ -2,6 +2,12 @@
 title: CRAN package `readmoRe`
 ---
 
+## Re-submission 2025-03-01
+This is a re-submission. The version was increased to 0.2-15 after addressing the
+issues arising in CRAN incoming-checks:
+
+  * No Authors@R field in DESCRIPTION.
+
 ## Re-submission 2025-02-28
 This is a re-submission. The version was increased to 0.2-14 after addressing the
 issues arising in pre-tests:
